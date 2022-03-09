@@ -23,12 +23,6 @@ public class ControlPlayer : MonoBehaviour
     public LayerMask floorLayer; //地面层；
     public float jumpHeight = 1; //跳跃高度；
 
-    public GameObject bullet; //子弹；
-    public Transform bulletStartTransform; //子弹初始状态；
-    public float bulletStartSpeed = 100; //子弹初速度；
-    public bool keepFire = false; //连射；
-    public float fireInterval = 0.25f; //连射间隔；
-
     public ControlBotAnimator controlBotAnimator; //机器人动画控制；
 
     // Start is called before the first frame update
@@ -43,7 +37,6 @@ public class ControlPlayer : MonoBehaviour
     {
         RotateControl();
         MoveControl();
-        ControlFire();
     }
 
     void FixedUpdate()
@@ -116,38 +109,6 @@ public class ControlPlayer : MonoBehaviour
         {
             controlBotAnimator.moveSpeed = moveSpeed * vInput;
             controlBotAnimator.alerted = vInput != 0 ? true : false;
-        }
-    }
-
-    //控制开火：
-    void ControlFire()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            keepFire = true;
-            StartCoroutine("Fire");
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            keepFire = false;
-            StopCoroutine("Fire");
-        }
-    }
-
-    //协程开火：
-    IEnumerator Fire()
-    {
-        while (keepFire)
-        {
-            if (bullet != null && bulletStartTransform != null)
-            {
-
-                GameObject newBullet = Instantiate(bullet, bulletStartTransform.position, bulletStartTransform.rotation);
-                newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletStartSpeed;
-
-                Destroy(newBullet, 5);
-            }
-            yield return new WaitForSeconds(fireInterval); //中断函数，等待；
         }
     }
 }
