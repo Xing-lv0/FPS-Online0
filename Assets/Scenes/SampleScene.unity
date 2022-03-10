@@ -74473,6 +74473,13 @@ MonoBehaviour:
   defaultPositionTransform: {fileID: 1187454324}
   recoilPositionTransform: {fileID: 82731474}
   lerpRatio: 0.2
+  shotAudio: {fileID: 1732307583}
+--- !u!82 &1732307583 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7127509068498737793, guid: 42ebecc9ee3118d4291602775f4eb6a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 973987154474614967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1732409020
 GameObject:
   m_ObjectHideFlags: 0

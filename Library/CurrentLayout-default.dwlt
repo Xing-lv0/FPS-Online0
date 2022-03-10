@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Game
   m_RootView: {fileID: 10}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 663}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 396
     height: 409
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -147,8 +147,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 881, y: 463}
-  m_MaxSize: {x: 16006, y: 12063}
+  m_MinSize: {x: 881, y: 613}
+  m_MaxSize: {x: 16006, y: 18063}
   vertical: 0
   controlID: 19
 --- !u!114 &7
@@ -197,8 +197,8 @@ MonoBehaviour:
     y: 0
     width: 403
     height: 671
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -223,14 +223,14 @@ MonoBehaviour:
     y: 671
     width: 1367
     height: 276
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 24}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
   - {fileID: 24}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -326,8 +326,8 @@ MonoBehaviour:
     y: 0
     width: 1367
     height: 947
-  m_MinSize: {x: 605, y: 463}
-  m_MaxSize: {x: 12005, y: 12063}
+  m_MinSize: {x: 605, y: 613}
+  m_MaxSize: {x: 12005, y: 18063}
   vertical: 1
   controlID: 118
 --- !u!114 &14
@@ -374,8 +374,8 @@ MonoBehaviour:
     y: 0
     width: 568
     height: 409
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -571,22 +571,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/FPS/Audio/SFX/Weapons
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/FPS/Audio/SFX/Weapons
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Me\Unity Projects\FPS online
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 90720000
-    m_LastClickedID: 29328
-    m_ExpandedIDs: 000000003c7200003e720000407200004272000044720000467200009872000000ca9a3b
+    scrollPos: {x: 0, y: 420}
+    m_SelectedIDs: e61b0100
+    m_LastClickedID: 72678
+    m_ExpandedIDs: 00000000487200004a7200004c7200004e720000507200005272000054720000461b01007c1b0100d61b010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -614,7 +614,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003c7200003e72000040720000427200004472000046720000
+    m_ExpandedIDs: 00000000487200004a7200004c7200004e720000507200005272000054720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 160
+    m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
@@ -737,9 +737,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e2690000
-      m_LastClickedID: 27106
-      m_ExpandedIDs: dcf6ffffe0f6fffff0f6fffff2f6ffff6efbffffb44c00003e600000
+      m_SelectedIDs: 62630000
+      m_LastClickedID: 25442
+      m_ExpandedIDs: e0f6fffff0f6fffff2f6ffff6efbffffba4c000062630000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

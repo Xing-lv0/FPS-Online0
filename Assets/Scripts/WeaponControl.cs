@@ -11,9 +11,13 @@ public class WeaponControl : MonoBehaviour
     public float fireInterval = 0.1f; //连射间隔；
 
     //后坐力动画：
+    //public bool haveRecoil = false;
     public Transform defaultPositionTransform; //武器初始位置；
     public Transform recoilPositionTransform; //后坐力推至的位置；
     public float lerpRatio = 0.2f; //插值参数；
+
+    //音效：
+    public AudioSource shotAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +53,14 @@ public class WeaponControl : MonoBehaviour
         {
             if (bullet != null && bulletStartTransform != null)
             {
-
+                //生成子弹：
                 GameObject newBullet = Instantiate(bullet, bulletStartTransform.position, bulletStartTransform.rotation);
                 newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletStartSpeed;
 
+                PlayShotAudio(); //枪声；
+
                 //后坐力动画：
+                //haveRecoil = true;
                 StopCoroutine("RecoilAnimation");
                 StartCoroutine("RecoilAnimation");
 
@@ -71,13 +78,16 @@ public class WeaponControl : MonoBehaviour
         if (defaultPositionTransform != null && recoilPositionTransform != null) 
         {
             //后坐：
-            while (this.transform.localPosition != recoilPositionTransform.localPosition)
+            //if (haveRecoil)
             {
-                print("this:" + this.transform.localPosition);
-                print("default:" + recoilPositionTransform.localPosition);
-                print("recoil:" + recoilPositionTransform.localPosition);
-                this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, recoilPositionTransform.localPosition, lerpRatio);
-                yield return null;
+                while (this.transform.localPosition != recoilPositionTransform.localPosition)
+                {
+                    //print("this:" + this.transform.localPosition);
+                    //print("default:" + recoilPositionTransform.localPosition);
+                    //print("recoil:" + recoilPositionTransform.localPosition);
+                    this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, recoilPositionTransform.localPosition, lerpRatio * 4);
+                    yield return null;
+                }
             }
 
             //恢复:
@@ -87,5 +97,11 @@ public class WeaponControl : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    private void PlayShotAudio()
+    {
+        if (shotAudio)
+            shotAudio.Play();
     }
 }
