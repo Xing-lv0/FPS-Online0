@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FloorUnit
+  - WeaponCamera
   layers:
   - Default
   - TransparentFX

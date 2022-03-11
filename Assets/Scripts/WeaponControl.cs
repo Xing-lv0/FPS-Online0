@@ -19,10 +19,19 @@ public class WeaponControl : MonoBehaviour
     //音效：
     public AudioSource shotAudio;
 
+    //机瞄视角控制：
+    public Camera mainCamera;
+    public Camera weaponCamera;
+    public Vector3 weaponCameraDefaultPosition;
+    public Vector3 weaponCameraAimPosition;
+    public float defaultFOV = 60;
+    public float aimFOV = 30;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetCompent<Camera>();
+        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetCompent<Camera>();
     }
 
     // Update is called once per frame
@@ -103,5 +112,18 @@ public class WeaponControl : MonoBehaviour
     {
         if (shotAudio)
             shotAudio.Play();
+    }
+
+    private void CameraAim()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+
+        }
     }
 }
