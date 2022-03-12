@@ -41054,12 +41054,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972509415}
   m_Mesh: {fileID: 4300000, guid: b509642794356c148aba47d93d0e517f, type: 3}
---- !u!20 &974948444 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2479614126292624637, guid: 42ebecc9ee3118d4291602775f4eb6a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 973987154474614967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &975188065
 GameObject:
   m_ObjectHideFlags: 0
@@ -56818,12 +56812,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336697594}
   m_Mesh: {fileID: 4300000, guid: b509642794356c148aba47d93d0e517f, type: 3}
---- !u!20 &1338400439 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 973987154892549572, guid: 42ebecc9ee3118d4291602775f4eb6a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 973987154474614967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1338938985
 GameObject:
   m_ObjectHideFlags: 0
@@ -74661,12 +74649,13 @@ MonoBehaviour:
   recoilPositionTransform: {fileID: 82731474}
   lerpRatio: 0.2
   shotAudio: {fileID: 1732307583}
-  mainCamera: {fileID: 1338400439}
-  weaponCamera: {fileID: 974948444}
+  mainCamera: {fileID: 0}
+  weaponCamera: {fileID: 0}
   weaponCameraDefaultPosition: {x: -0.291, y: 0.091, z: 0.033}
   weaponCameraAimPosition: {x: 0, y: 0, z: 0}
   defaultFOV: 60
   aimFOV: 30
+  viewLerpRatio: 0.2
 --- !u!82 &1732307583 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 7127509068498737793, guid: 42ebecc9ee3118d4291602775f4eb6a7,

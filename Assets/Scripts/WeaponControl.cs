@@ -26,18 +26,23 @@ public class WeaponControl : MonoBehaviour
     public Vector3 weaponCameraAimPosition;
     public float defaultFOV = 60;
     public float aimFOV = 30;
+    public float viewLerpRatio = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetCompent<Camera>();
-        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetCompent<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
         FireControl();
+        ViewChange();
+
+        Ray ray = new Ray(bulletStartTransform.position, bulletStartTransform.forward);
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red);
     }
 
     //控制开火：
@@ -114,16 +119,48 @@ public class WeaponControl : MonoBehaviour
             shotAudio.Play();
     }
 
-    private void CameraAim()
+    private void ViewChange()
     {
         if (Input.GetMouseButtonDown(1))
         {
-
+            StopCoroutine("ToDefaultView");
+            StartCoroutine("ToAimView");
         }
 
         if (Input.GetMouseButtonUp(1))
         {
+            StopCoroutine("ToAimView");
+            StartCoroutine("ToDefaultView");
+        }
+    }
 
+    //切换到瞄镜头；
+    IEnumerator ToAimView()
+    {
+        while (weaponCamera.transform.localPosition != weaponCameraAimPosition)
+        {
+            print("ToAimView");
+            weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,
+                weaponCameraAimPosition, viewLerpRatio);
+            weaponCamera.fieldOfView = Mathf.Lerp(weaponCamera.fieldOfView, aimFOV, viewLerpRatio);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, aimFOV, viewLerpRatio);
+
+            yield return null; //等待1帧；
+        }
+    }
+
+    //切换到普通镜头；
+    IEnumerator ToDefaultView()
+    {
+        print("ToDefaultView");
+        while (weaponCamera.transform.localPosition != weaponCameraDefaultPosition)
+        {
+            weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,
+                weaponCameraDefaultPosition, viewLerpRatio);
+            weaponCamera.fieldOfView = Mathf.Lerp(weaponCamera.fieldOfView, defaultFOV, viewLerpRatio);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, defaultFOV, viewLerpRatio);
+
+            yield return null; //等待1帧；
         }
     }
 }
