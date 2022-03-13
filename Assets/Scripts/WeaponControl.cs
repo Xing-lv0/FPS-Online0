@@ -31,8 +31,8 @@ public class WeaponControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetComponent<Camera>();
+        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        //weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -137,9 +137,9 @@ public class WeaponControl : MonoBehaviour
     //«–ªªµΩ√ÈæµÕ∑£ª
     IEnumerator ToAimView()
     {
+        print("to AimPosition: " + weaponCameraAimPosition);
         while (weaponCamera.transform.localPosition != weaponCameraAimPosition)
         {
-            print("ToAimView");
             weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,
                 weaponCameraAimPosition, viewLerpRatio);
             weaponCamera.fieldOfView = Mathf.Lerp(weaponCamera.fieldOfView, aimFOV, viewLerpRatio);
@@ -152,7 +152,7 @@ public class WeaponControl : MonoBehaviour
     //«–ªªµΩ∆’Õ®æµÕ∑£ª
     IEnumerator ToDefaultView()
     {
-        print("ToDefaultView");
+        print("to DefaultPosition: " + weaponCameraDefaultPosition);
         while (weaponCamera.transform.localPosition != weaponCameraDefaultPosition)
         {
             weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,
