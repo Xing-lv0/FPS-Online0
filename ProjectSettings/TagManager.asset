@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FloorUnit
   - WeaponCamera
+  - Enemy
   layers:
   - Default
   - TransparentFX

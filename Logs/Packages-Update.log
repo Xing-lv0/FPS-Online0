@@ -55,3 +55,13 @@ The following packages were added:
   com.unity.connect.share@4.1.1
   com.unity.learn.iet-framework@1.2.3
   com.unity.probuilder@4.5.2
+
+=== Sat Mar 19 01:22:33 2022
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.15.12 to 1.15.13
+  com.unity.ide.vscode from version 1.2.4 to 1.2.5
+  com.unity.test-framework from version 1.1.29 to 1.1.31

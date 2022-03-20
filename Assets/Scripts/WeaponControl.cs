@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponControl : MonoBehaviour
 {
+    public int ID; //武器所有者ID;
     public GameObject bullet; //子弹；
     public Transform bulletStartTransform; //子弹初始状态；
     public float bulletStartSpeed = 100; //子弹初速度；
@@ -69,6 +70,7 @@ public class WeaponControl : MonoBehaviour
             {
                 //生成子弹：
                 GameObject newBullet = Instantiate(bullet, bulletStartTransform.position, bulletStartTransform.rotation);
+                newBullet.GetComponent<BulletControl>().SetHost(ID);
                 newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletStartSpeed;
 
                 PlayShotAudio(); //枪声；
@@ -137,7 +139,7 @@ public class WeaponControl : MonoBehaviour
     //切换到瞄镜头；
     IEnumerator ToAimView()
     {
-        print("to AimPosition: " + weaponCameraAimPosition);
+        //print("to AimPosition: " + weaponCameraAimPosition);
         while (weaponCamera.transform.localPosition != weaponCameraAimPosition)
         {
             weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,
@@ -152,7 +154,7 @@ public class WeaponControl : MonoBehaviour
     //切换到普通镜头；
     IEnumerator ToDefaultView()
     {
-        print("to DefaultPosition: " + weaponCameraDefaultPosition);
+        //print("to DefaultPosition: " + weaponCameraDefaultPosition);
         while (weaponCamera.transform.localPosition != weaponCameraDefaultPosition)
         {
             weaponCamera.transform.localPosition = Vector3.Lerp(weaponCamera.transform.localPosition,

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ControlPlayer : MonoBehaviour
 {
+    public int ID; //玩家ID;
+
     public float rotateSpeed = 180;
     [Range(1, 2)]
     public float rotateRatio = 1;
@@ -24,6 +26,7 @@ public class ControlPlayer : MonoBehaviour
     public float jumpHeight = 1; //跳跃高度；
 
     public ControlBotAnimator controlBotAnimator; //机器人动画控制；
+    public Transform enemySightPositionTransform; //AI敌人视野判定点；
 
     // Start is called before the first frame update
     void Start()
