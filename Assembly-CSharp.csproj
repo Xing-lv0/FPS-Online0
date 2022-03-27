@@ -57,12 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\LayTheFloor.cs" />
+    <Compile Include="Assets\Scripts\HealthControl.cs" />
     <Compile Include="Assets\Scripts\EnemyControl.cs" />
     <Compile Include="Assets\Scripts\ControlPlayer.cs" />
     <Compile Include="Assets\Scripts\BulletControl.cs" />
     <Compile Include="Assets\Scripts\WeaponControl.cs" />
     <Compile Include="Assets\Scripts\ControlBotAnimator.cs" />
-    <Compile Include="Assets\Scripts\HealthControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

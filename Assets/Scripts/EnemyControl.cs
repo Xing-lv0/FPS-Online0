@@ -20,11 +20,14 @@ public class EnemyControl : MonoBehaviour
     public bool isFiring; //正在开火；
     public float fireInternal = 0.1f; //开火间隔；
 
+    public ControlBotAnimator enemyAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         enemyAgent = this.GetComponent<NavMeshAgent>();
         playerControl = GameObject.FindObjectOfType<ControlPlayer>();
+        enemyAnimator = this.GetComponent<ControlBotAnimator>();
 
         if (patrolRoot)
         {
@@ -39,9 +42,16 @@ public class EnemyControl : MonoBehaviour
         if (Vector3.Distance(enemyAgent.transform.position, playerControl.enemySightPositionTransform.position) < alertDistance)
         {
             enemyAgent.destination = playerControl.enemySightPositionTransform.position; //跟随玩家；
+
+            //动画：
+            enemyAnimator.moveSpeed = enemyAgent.speed;
+            enemyAnimator.alerted = true;
         }
         else
         {
+            //动画：
+            enemyAnimator.moveSpeed = enemyAgent.speed;
+            enemyAnimator.alerted = false;
             //自动巡逻：
             if (!enemyAgent.pathPending && enemyAgent.remainingDistance < 5)
             //NavMeshAgent.pathPending:  /是正在计算过程中而尚未就绪的路径吗？/ Is a path in the process of being computed but not yet ready?
@@ -96,8 +106,10 @@ public class EnemyControl : MonoBehaviour
             newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletStartSpeed;
             Destroy(newBullet, 5);
 
+            //动画：
+            enemyAnimator.TriggerAttack();
+
             yield return new WaitForSeconds(fireInternal);
         }
-
     }
 }

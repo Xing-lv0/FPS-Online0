@@ -48,6 +48,6 @@ public class ControlBotAnimator : MonoBehaviour
         if (animator == null)
             return;
 
-        animator.SetTrigger("OnDamage");
+        animator.SetTrigger("OnDamaged");
     }
 }

@@ -8,6 +8,8 @@ public class BulletControl : MonoBehaviour
     public int hostID; //子弹发射者ID，-1为NPC，大于1为玩家；
     public float damageValue = 10;
 
+    public GameObject particle; //子弹命中的粒子效果；
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class BulletControl : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 collision.gameObject.GetComponent<HealthControl>().Damage(damageValue);
+                collision.gameObject.GetComponent<EnemyControl>().enemyAnimator.TriggerOnDamage();
             }
         }
         else //NPC的子弹；
@@ -45,9 +48,21 @@ public class BulletControl : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 collision.gameObject.GetComponent<HealthControl>().Damage(damageValue);
+                collision.gameObject.GetComponent<ControlPlayer>().controlBotAnimator.TriggerOnDamage();
             }
         }
 
+        ParticleExplode();
         Destroy(this.gameObject);
+    }
+
+    private void ParticleExplode()
+    {
+        if (particle)
+        {
+            GameObject newParticle = Instantiate(particle, this.transform.position, particle.transform.rotation);
+
+            Destroy(newParticle, 3);
+        }
     }
 }
