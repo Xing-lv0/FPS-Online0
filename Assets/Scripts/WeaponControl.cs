@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponControl : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class WeaponControl : MonoBehaviour
     public float bulletStartSpeed = 100; //子弹初速度；
     public bool keepFire = false; //连射；
     public float fireInterval = 0.1f; //连射间隔；
+
+    //装填子弹：
+    public float bulletLimit = 30; //弹匣容量；
+    public float currentBulletCount = 30; //当前剩余子弹数；
+    public float reloadTime = 2; //换弹动作时长；
+    public float timeToReload = 0.5f; //停止开火后开始填充子弹的时间；
+    public Slider bulletSlider;
 
     //后坐力动画：
     //public bool haveRecoil = false;
@@ -32,8 +40,15 @@ public class WeaponControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        //weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetComponent<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        weaponCamera = GameObject.FindGameObjectWithTag("WeaponCamera").GetComponent<Camera>();
+        currentBulletCount = bulletLimit;
+
+        if (bulletSlider)
+        {
+            bulletSlider.maxValue = bulletLimit;
+            bulletSlider.value = currentBulletCount;
+        }
     }
 
     // Update is called once per frame
@@ -58,13 +73,17 @@ public class WeaponControl : MonoBehaviour
         {
             keepFire = false;
             StopCoroutine("Fire");
+
+            //重装子弹；
+            StopCoroutine("Reload");
+            StartCoroutine("Reload");
         }
     }
 
     //协程开火：
     IEnumerator Fire()
     {
-        while (keepFire)
+        while (keepFire && currentBulletCount >= 1)
         {
             if (bullet != null && bulletStartTransform != null)
             {
@@ -80,9 +99,32 @@ public class WeaponControl : MonoBehaviour
                 StopCoroutine("RecoilAnimation");
                 StartCoroutine("RecoilAnimation");
 
+                currentBulletCount -= 1;
+                if (bulletSlider)
+                {
+                    bulletSlider.value = currentBulletCount;
+                }
+
                 Destroy(newBullet, 5);
             }
             yield return new WaitForSeconds(fireInterval); //中断函数，等待；
+        }
+    }
+
+    //重装子弹：
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(timeToReload);
+
+        while (!keepFire && currentBulletCount < bulletLimit)
+        {
+            currentBulletCount += bulletLimit / reloadTime * Time.deltaTime;
+            if (bulletSlider)
+            {
+                bulletSlider.value = currentBulletCount;
+            }
+
+            yield return null;
         }
     }
 
